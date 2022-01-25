@@ -11,12 +11,9 @@ struct TextFieldView: View {
     @Binding var text: Double
     
     var body: some View {
-        
-       
         TextField("", value: $text, formatter: NumberFormatter())
             .textFieldStyle(.roundedBorder)
             .frame(width: 50)
-            
     }
 }
 

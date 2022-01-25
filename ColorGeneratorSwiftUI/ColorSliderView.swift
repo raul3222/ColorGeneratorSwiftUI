@@ -9,19 +9,18 @@ import SwiftUI
 
 struct ColorSliderView: View {
     @Binding var value: Double
-    //@State private var isEditing = false
     let sliderColor: Color
     let color: Color
 
     var body: some View {
         HStack {
-            Text("\(lround(value))").foregroundColor(color)
+            Text("\(lround(value))")
+                .foregroundColor(color)
                 .frame(width: 50)
             Slider(value: $value, in: 0...255, step: 1)
-            .accentColor(sliderColor)
+                .accentColor(sliderColor)
                 .frame(width: 250)
         }
-        
     }
 }
 
