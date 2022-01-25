@@ -14,32 +14,14 @@ struct ContentView: View {
     
     var body: some View {
         VStack{
-            MyRectangle(
+            MyRectangleView(
                 redSliderValue: redSliderValue,
                 greenSliderValue: greenSliderValue,
                 blueSliderValue: blueSliderValue)
             
-            HStack{
-                ColorSliderView(
-                    value: $redSliderValue,
-                    sliderColor: Color.red,
-                    color: .red)
-                TextFieldView(text: $redSliderValue)
-            }
-            HStack {
-                ColorSliderView(
-                    value: $greenSliderValue,
-                    sliderColor: Color.green,
-                    color: .green)
-                TextFieldView(text: $greenSliderValue)
-            }
-            HStack{
-                ColorSliderView(
-                    value: $blueSliderValue,
-                    sliderColor: Color.blue,
-                    color: .blue)
-                TextFieldView(text: $blueSliderValue)
-            }
+            SlidersView(sliderValue: $redSliderValue, sliderColor: .red)
+            SlidersView(sliderValue: $greenSliderValue, sliderColor: .green)
+            SlidersView(sliderValue: $blueSliderValue, sliderColor: .blue)
         }
     }
 }
@@ -50,7 +32,7 @@ struct ContentView_Previews: PreviewProvider {
     }
 }
 
-struct MyRectangle: View {
+struct MyRectangleView: View {
     let redSliderValue: Double
     let greenSliderValue: Double
     let blueSliderValue: Double
@@ -62,5 +44,19 @@ struct MyRectangle: View {
             .cornerRadius(20)
             .overlay(RoundedRectangle(cornerRadius: 20).stroke(Color.gray, lineWidth: 4))
             .padding(30)
+    }
+}
+
+struct SlidersView: View {
+    @Binding var sliderValue: Double
+    let sliderColor: Color
+
+    var body: some View {
+        HStack{
+            ColorSliderView(
+                value: $sliderValue,
+                sliderColor: sliderColor)
+            TextFieldView(text: $sliderValue)
+        }
     }
 }
